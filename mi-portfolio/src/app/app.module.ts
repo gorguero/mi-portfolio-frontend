@@ -10,6 +10,10 @@ import { SobreMiComponent } from './components/acerca-de/sobre-mi/sobre-mi.compo
 import { EducacionYExperienciaComponent } from './components/educacion-y-experiencia/educacion-y-experiencia.component';
 import { EducacionComponent } from './components/educacion-y-experiencia/educacion/educacion.component';
 import { ExperienciaLaboralComponent } from './components/educacion-y-experiencia/experiencia-laboral/experiencia-laboral.component';
+import { HabilidadesComponent } from './components/habilidades/habilidades.component';
+import { TecnologiasComponent } from './components/tecnologias/tecnologias.component';
+import { ProyectosComponent } from './components/proyectos/proyectos.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { ExperienciaLaboralComponent } from './components/educacion-y-experienci
     SobreMiComponent,
     EducacionYExperienciaComponent,
     EducacionComponent,
-    ExperienciaLaboralComponent
+    ExperienciaLaboralComponent,
+    HabilidadesComponent,
+    TecnologiasComponent,
+    ProyectosComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
