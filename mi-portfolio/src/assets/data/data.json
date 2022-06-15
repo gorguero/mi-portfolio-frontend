@@ -3,7 +3,7 @@
     "imagenPerfil": "../../assets/img/perfil.png",
     "perfilLaboral": "Desarrollador Web Full Stack Trainnee",
     "ubicacion": "Catamarca, Argentina",
-    "logoLinkedin": "../../assets/img/linkedin (1).png",
+    "logoLinkedin": "../../../assets/img/linkedin (1).png",
     "logoGithub": "../../assets/img/github (1).png",
     "sobreMi": {
         "parte1": "Soy un desarrollador web full stack Trainee. Me encuentro cursando el ultimo año de la tecnicatura en desarrollo de software en el Instituto Superior San Martin y realizando la segunda etapa de Argentina Programa #YoProgramo.",
@@ -20,7 +20,8 @@
         "emailLogo": "../../assets/img/gmail.png",
         "telefonoLogo": "../../assets/img/telefono.png"
     },
-    "educacion": [{
+    "educacion": [
+        {
             "escuela": "Instituto Superior General San Martin",
             "titulo": "Técnico Superior en Desarrollo de Software",
             "comienzo": 2019,
@@ -45,10 +46,10 @@
     "experiencia": [
         {
             "company": "Incluit",
-            "titulo": "Full Stack Web Developer Jr",
+            "puesto": "Frontend developer",
             "comienzo": 2022,
             "finalizacion": "Actualidad",
-            "ubicacion": "Córdoba, Argentina",
+            "ubicacion": "Remoto",
             "logo": "../../assets/img/logo-udemy.png"
         }
     ],

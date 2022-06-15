@@ -1,13 +1,12 @@
 <div class="mx-auto my-4" style="width: 20rem;">
 
-    <img src="img/perfil.png" class="card-img-top rounded-circle" alt="Imagen de perfil">
+    <img [src]="miPortfolio.imagenPerfil" class="card-img-top rounded-circle" alt="Imagen de perfil">
 
     <div class="card-body">
 
-        <p class="card-title text-center fs-4 fw-bold">Juan Cruz Agüero Luna</p>
-        <p class="card-subtitle text-center fs-6 lh-lg fw-bolder">Desarrollador Web Full Stack Jr
-        </p>
-        <p class="card-text text-center">Catamarca, Argentina</p>
+        <p class="card-title text-center fs-4 fw-bold">{{miPortfolio.nombre}}</p>
+        <p class="card-subtitle text-center fs-6 lh-lg fw-bolder">{{miPortfolio.perfilLaboral}}</p>
+        <p class="card-text text-center">{{miPortfolio.ubicacion}}</p>
 
     </div>
 </div>
