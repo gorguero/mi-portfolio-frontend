@@ -3,13 +3,9 @@
     <p class="fs-1 fw-bold text-uppercase">Sobre mi</p>
 
     <p class="fs-4" style="letter-spacing: 2.5px;">
-        <span class="ms-3">Soy</span>  un desarrollador web full stack Trainee .
-        Me encuentro cursando el ultimo año de la tecnicatura en desarrollo de software en el Instituto Superior San Martin y 
-        realizando la segunda etapa de Argentina Programa #YoProgramo. <br>
-        <span class="ms-3">Tengo</span> disponibilidad full time. <br> 
-        <span class="ms-3">Soy</span> una persona proactiva con muchas ganas de seguir aprendiendo, de poder aportar en proyectos
-        desafiantes y en busqueda de mi primera oportunidad laboral como desarrollador, para asi lograr experiencia laboral
-        en el mundo del software.
+        <span class="ms-3">{{sobreMi.parte1}}</span><br>
+        <span class="ms-3">{{disponibilidad}}</span><br> 
+        <span class="ms-3">{{sobreMi.parte2}}</span>
     </p>
 
     <!-- Button trigger modal -->
@@ -32,11 +28,11 @@
                     
                     <article class="d-flex align-items-center mt-3">
 
-                        <img src="img/linkedin-icon.png" alt="" width="40px" height="40px">
+                        <img [src]="informacionDeContacto.linkedinLogo" alt="" width="40px" height="40px">
 
                         <div class="text-center py-1 ms-3">
 
-                            <a href="https://www.linkedin.com/in/juan-cruz-ag%C3%BCero/" 
+                            <a [href]="informacionDeContacto.linkedin" 
                             class="fs-5 fw-bold text-white text-decoration-none"  target="_blank">Juan Cruz Agüero Luna</a>
 
                         </div>
@@ -45,11 +41,11 @@
 
                     <article class="d-flex align-items-center mt-3">
 
-                        <img src="img/github2.png" alt="" width="40px" height="40px">
+                        <img [src]="informacionDeContacto.githubLogo" alt="" width="40px" height="40px">
 
                         <div class="text-center py-1 ms-3">
 
-                            <a href="https://github.com/gorguero" 
+                            <a [href]="informacionDeContacto.github" 
                             class="fs-5 fw-bold text-white text-decoration-none" target="_blank">gorguero</a>
 
                         </div>
@@ -58,11 +54,11 @@
 
                     <article class="d-flex align-items-center mt-3">
 
-                        <img src="img/gmail.png" alt="" width="40px" height="40px">
+                        <img [src]="informacionDeContacto.emailLogo" alt="" width="40px" height="40px">
 
                         <div class="text-center py-1 ms-3">
 
-                            <p class="fs-5 fw-bold text-white text-decoration-none">jcaguerodev@gmail.com</p>
+                            <p class="fs-5 fw-bold text-white text-decoration-none">{{informacionDeContacto.email}}</p>
 
                         </div>
 
@@ -70,11 +66,11 @@
 
                     <article class="d-flex align-items-center mt-3">
 
-                        <img src="img/telefono.png" alt="" width="40px" height="40px">
+                        <img [src]="informacionDeContacto.telefonoLogo" alt="" width="40px" height="40px">
 
                         <div class="text-center py-1 ms-3">
 
-                            <p class="fs-5 fw-bold text-white text-decoration-none">+543834403372</p>
+                            <p class="fs-5 fw-bold text-white text-decoration-none">{{informacionDeContacto.telefono}}</p>
 
                         </div>
 
