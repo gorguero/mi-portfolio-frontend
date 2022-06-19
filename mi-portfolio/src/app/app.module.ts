@@ -15,7 +15,6 @@ import { HabilidadesComponent } from './components/habilidades/habilidades.compo
 import { TecnologiasComponent } from './components/tecnologias/tecnologias.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SesionComponent } from './components/sesion/sesion.component';
 import { LoginComponent } from './login/login.component';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,7 +33,6 @@ import { HomeComponent } from './components/home/home.component';
     TecnologiasComponent,
     ProyectosComponent,
     FooterComponent,
-    SesionComponent,
     LoginComponent,
     AdministradorComponent,
     HomeComponent

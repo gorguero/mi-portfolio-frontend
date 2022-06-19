@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PorfolioService } from './servicios/porfolio.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mi-portfolio';
+  
+  miPortfolio:any;
+
+  constructor(private datosPorfolio:PorfolioService) { } //Inyectar servicio a un componente
+
+  ngOnInit(): void {
+    this.datosPorfolio.obtenerDatos().subscribe(data => {
+      this.miPortfolio = data;
+    });
+  }
 }
