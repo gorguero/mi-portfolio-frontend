@@ -1,0 +1,137 @@
+<hr class="w-75 mx-auto my-4 border border-1 border-dark opacity-75">
+
+
+<p class="display-5 ms-5 my-4 text-center text-uppercase lh-lg fw-bold">Experiencia laboral</p>
+
+<article class="d-flex justify-content-evenly mt-2 align-items-center">
+
+    <img src="img/logo-udemy.png" alt="Logo udemy" style="width: 10rem;">
+
+    <div class="text-center py-1">
+
+        <p class="fs-5 fw-bold pt-2">Nombre de la empresa</p>
+
+        <p class="fst-italic fw-bold">Frontend Developer</p>
+
+        <p>Nov 2022 - Actualidad</p>
+
+        <p class="card-text text-center">Córdoba, Argentina</p>
+
+    </div>
+
+    <i class="bi bi-x-circle-fill text-danger fs-2"></i>
+
+</article>
+
+<div class="d-flex justify-content-evenly mt-4 align-text-bottom">
+
+    <!-- Button trigger modal de agregar experiencia laboral-->
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnAgregarExpLaboral">
+        <i class="bi bi-plus-circle-fill fs-1"></i>
+    </button>
+    <!-- Button trigger modal de editar experiencia laboral-->
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarExpLaboral">
+        <i class="bi bi-pencil-fill fs-1"></i>
+    </button>
+
+    <!-- Modal para agregar experiencia laboral -->
+    <div class="modal fade" id="btnAgregarExpLaboral" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="agregarExpLaboralLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title text-white" id="agregarExpLaboralLabel">Agregar una nueva
+                        experiencia laboral</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label text-white-50">Cargar
+                                logo</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Nombre de la
+                                empresa:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria el nombre la empresa">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Cargo:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria el cargo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Fecha en el
+                                cargo:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria la fecha del cargo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Ubicación de la
+                                empresa:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria la ubicacion de la empresa">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Agregar
+                        nueva experiencia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar experiencia laboral -->
+    <div class="modal fade" id="btnEditarExpLaboral" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="editarExpLaboralLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title text-white" id="editarExpLaboralLabel">Editar experiencia
+                        laboral</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label text-white-50">Cargar
+                                logo</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Nombre de la
+                                empresa:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria el nombre la empresa">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Cargo:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria el cargo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Fecha en el
+                                cargo:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria la fecha del cargo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label text-white-50">Ubicación de la
+                                empresa:</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Aqui iria la ubicacion de la empresa">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar experiencia
+                        laboral</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
