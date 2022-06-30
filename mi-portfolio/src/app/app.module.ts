@@ -24,6 +24,10 @@ import { SobremiComponent } from './administrador/acercade-admi/sobremi/sobremi.
 import { EduExpAdmiComponent } from './administrador/edu-exp-admi/edu-exp-admi.component';
 import { EducacionAdmiComponent } from './administrador/edu-exp-admi/educacion-admi/educacion-admi.component';
 import { ExperiencialabAdmiComponent } from './administrador/edu-exp-admi/experiencialab-admi/experiencialab-admi.component';
+import { HabilidadesAdmiComponent } from './administrador/habilidades-admi/habilidades-admi.component';
+import { TecnologiasAdmiComponent } from './administrador/tecnologias-admi/tecnologias-admi.component';
+import { ProyectosAdmiComponent } from './administrador/proyectos-admi/proyectos-admi.component';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +52,9 @@ import { ExperiencialabAdmiComponent } from './administrador/edu-exp-admi/experi
     EduExpAdmiComponent,
     EducacionAdmiComponent,
     ExperiencialabAdmiComponent,
+    HabilidadesAdmiComponent,
+    TecnologiasAdmiComponent,
+    ProyectosAdmiComponent
   ],
   imports: [
     BrowserModule,
