@@ -1,0 +1,149 @@
+<div class="ms-4">
+
+    <p class="fs-1 fw-bold text-uppercase">Sobre mi</p>
+
+    <p class="fs-4" style="letter-spacing: 2.5px;">
+        <span class="ms-3">Soy</span> un desarrollador web full stack Trainee .
+        Me encuentro cursando el ultimo año de la tecnicatura en desarrollo de software en el
+        Instituto Superior San Martin y
+        realizando la segunda etapa de Argentina Programa #YoProgramo. <br>
+        <span class="ms-3">Tengo</span> disponibilidad full time. <br>
+        <span class="ms-3">Soy</span> una persona proactiva con muchas ganas de seguir aprendiendo,
+        de poder aportar en proyectos
+        desafiantes y en busqueda de mi primera oportunidad laboral como desarrollador, para asi
+        lograr experiencia laboral
+        en el mundo del software.
+    </p>
+
+    <!-- Button trigger modal Info de contacto -->
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+        data-bs-target="#modalInfoContacto">
+        Información de contacto
+    </button>
+
+    <!-- Button trigger modal Sobre mi -->
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+        data-bs-target="#modalSobreMi">
+        Editar "Sobre mi"
+    </button>
+
+    <!-- Modal Sobre mi-->
+    <div class="modal fade" id="modalSobreMi" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title text-white" id="staticBackdropLabel">Edición sobre mi
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1"
+                            class="form-label text-white-50">Ingrese breve biografía</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                            rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Actualizar "Sobre mi"</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Info de contacto -->
+    <div class="modal fade" id="modalInfoContacto" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
+            <div class="modal-content bg-dark">
+
+                <div class="modal-header">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">¡Contáctame!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <article class="d-flex align-self-center mt-3">
+
+                        <img src="img/linkedin-icon.png" alt="" width="40px" height="40px">
+
+                        <div class="text-center py-1 ms-3">
+
+                            <a href="https://www.linkedin.com/in/juan-cruz-ag%C3%BCero/"
+                                class="fs-5 fw-bold text-white text-decoration-none"
+                                target="_blank">Juan Cruz Agüero Luna</a>
+
+                        </div>
+
+                        <i class="bi bi-x-circle-fill text-danger fs-4 ms-5"></i>
+
+                    </article>
+
+                    <article class="d-flex align-self-center mt-3">
+
+                        <img src="img/github2.png" alt="" width="40px" height="40px">
+
+                        <div class="text-center py-1 ms-3">
+
+                            <a href="https://github.com/gorguero"
+                                class="fs-5 fw-bold text-white text-decoration-none"
+                                target="_blank">gorguero</a>
+
+                        </div>
+
+                        <i class="bi bi-x-circle-fill text-danger fs-4 ms-5"></i>
+
+                    </article>
+
+                    <article class="d-flex align-self-center mt-3">
+
+                        <img src="img/gmail.png" alt="" width="40px" height="40px">
+
+                        <div class="text-center py-1 ms-3">
+
+                            <p class="fs-5 fw-bold text-white text-decoration-none">
+                                jcaguerodev@gmail.com</p>
+
+                        </div>
+
+                        <i class="bi bi-x-circle-fill text-danger fs-4 ms-5"></i>
+
+                    </article>
+
+                    <article class="d-flex align-self-center mt-3">
+
+                        <img src="img/telefono.png" alt="" width="40px" height="40px">
+
+                        <div class="text-center py-1 ms-3">
+
+                            <p class="fs-5 fw-bold text-white text-decoration-none ms-2">
+                                +543834403372</p>
+
+                        </div>
+
+                        <i class="bi bi-x-circle-fill text-danger fs-4 ms-5"></i>
+
+                    </article>
+
+                </div>
+
+                <div class="modal-footer d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-outline-info"
+                        data-bs-dismiss="modal">Agregar</button>
+                    <button type="button" class="btn btn-outline-info"
+                        data-bs-dismiss="modal">Editar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -18,6 +18,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { HomeComponent } from './components/home/home.component';
+import { AcercadeAdmiComponent } from './administrador/acercade-admi/acercade-admi.component';
+import { MiperfilComponent } from './administrador/acercade-admi/miperfil/miperfil.component';
+import { SobremiComponent } from './administrador/acercade-admi/sobremi/sobremi.component';
+import { EduExpAdmiComponent } from './administrador/edu-exp-admi/edu-exp-admi.component';
+import { EducacionAdmiComponent } from './administrador/edu-exp-admi/educacion-admi/educacion-admi.component';
+import { ExperiencialabAdmiComponent } from './administrador/edu-exp-admi/experiencialab-admi/experiencialab-admi.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +41,13 @@ import { HomeComponent } from './components/home/home.component';
     FooterComponent,
     LoginComponent,
     AdministradorComponent,
-    HomeComponent
+    HomeComponent,
+    AcercadeAdmiComponent,
+    MiperfilComponent,
+    SobremiComponent,
+    EduExpAdmiComponent,
+    EducacionAdmiComponent,
+    ExperiencialabAdmiComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,65 @@
+<div class="mx-auto my-4" style="width: 20rem;" id="seccion-perfil">
+
+    <img src="img/perfil.png" class="card-img-top rounded-circle" alt="Imagen de perfil">
+
+    <div class="card-body">
+
+        <p class="card-title text-center fs-4 fw-bold">Juan Cruz Agüero Luna</p>
+        <p class="card-subtitle text-center fs-6 lh-lg fw-bolder">Desarrollador Web Full Stack Jr
+        </p>
+        <p class="card-text text-center">Catamarca, Argentina</p>
+
+    </div>
+
+    <!-- Button trigger modal de perfil -->
+    <div class="col text-center">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+            data-bs-target="#modalPerfil">
+            Editar perfil
+        </button>
+    </div>
+
+    <!-- Modal de perfil -->
+    <div class="modal fade" id="modalPerfil" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title text-white" id="staticBackdropLabel">Edición de perfil
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label text-white-50">Cargar imagen</label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1"
+                            class="form-label text-white-50">Nombre:</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Aqui iria el nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1"
+                            class="form-label text-white-50">Titulación:</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Aqui iria el titulo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1"
+                            class="form-label text-white-50">Ubicación:</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Aqui iria la ubicacion actual">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Actualizar perfil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
