@@ -27,6 +27,7 @@ import { ExperiencialabAdmiComponent } from './administrador/edu-exp-admi/experi
 import { HabilidadesAdmiComponent } from './administrador/habilidades-admi/habilidades-admi.component';
 import { TecnologiasAdmiComponent } from './administrador/tecnologias-admi/tecnologias-admi.component';
 import { ProyectosAdmiComponent } from './administrador/proyectos-admi/proyectos-admi.component';
+import { EncabezadoAdmiComponent } from './administrador/encabezado-admi/encabezado-admi.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ProyectosAdmiComponent } from './administrador/proyectos-admi/proyectos
     ExperiencialabAdmiComponent,
     HabilidadesAdmiComponent,
     TecnologiasAdmiComponent,
-    ProyectosAdmiComponent
+    ProyectosAdmiComponent,
+    EncabezadoAdmiComponent
   ],
   imports: [
     BrowserModule,
