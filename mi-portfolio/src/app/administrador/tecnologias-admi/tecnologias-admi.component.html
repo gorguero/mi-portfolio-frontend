@@ -1,0 +1,59 @@
+<!-- Seccion Tecnologías -->
+<section class="container-fluid pt-5 pb-5">
+
+    <hr class="w-25 mx-auto my-4 border border-1 border-dark opacity-75">
+
+    <p class="display-5 pt-3 text-center text-uppercase lh-lg fw-bold">Tecnologías</p>
+
+    <div class="row">
+
+        <article class="col d-flex justify-content-center flex-wrap mt-2">
+
+            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
+            <img src="img/html5 (1).png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
+
+            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
+            <img src="img/css3.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
+
+            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
+            <img src="img/bootstrap.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
+
+            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
+            <img src="img/javascript.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
+
+            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
+            <img src="img/git.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
+
+        </article>
+
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+        <!-- Button trigger modal de agregar tecnologia-->
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnAgregarTecnologia">
+            <i class="bi bi-plus-circle-fill fs-1"></i>
+        </button>
+        <!-- Modal de agregar tecnologia -->
+        <div class="modal fade" id="btnAgregarTecnologia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="btnAgregarTecnologiaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-white" id="AgregarTecnologiaLabel">Agregar nueva tecnología</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label text-white-50">Cargar logo de tecnología</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Agregar tecnología</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
