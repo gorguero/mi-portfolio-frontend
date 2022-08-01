@@ -11,8 +11,8 @@ export class Usuario{
     link_perfil:String;
     perfilLaboral:String;
 
-    constructor(nombre:String, apellido:String, presentacionUno:String, presentacionDos:String, telefono:String, email:String, ubicacion:String, link_perfil:String, perfilLaboral:String){
-        this.id;
+    constructor(id:number, nombre:String, apellido:String, presentacionUno:String, presentacionDos:String, telefono:String, email:String, ubicacion:String, link_perfil:String, perfilLaboral:String){
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.presentacionUno = presentacionUno;
@@ -21,7 +21,11 @@ export class Usuario{
         this.email = email;
         this.ubicacion = ubicacion;
         this.link_perfil = link_perfil;
-        this.perfilLaboral = perfilLaboral;
+        this.perfilLaboral = perfilLaboral;        
+    }
+
+    public get getId(){
+        return this.id;
     }
 
 }
