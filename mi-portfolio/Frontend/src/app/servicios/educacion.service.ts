@@ -12,6 +12,10 @@ export class EducacionService {
 
   constructor(private http:HttpClient) { }
 
+  public getEducacion():Observable<Educacion[]>{
+    return this.http.get<Educacion[]>(`${this.URL}obtener`);
+  }
+
   public findEducacion(idEducacion?:number):Observable<Educacion>{
     return this.http.get<Educacion>(`${this.URL}encontrar/${idEducacion}`);
   }
