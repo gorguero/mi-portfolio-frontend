@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/model/usuario.model';
 import { PorfolioService } from 'src/app/servicios/porfolio.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -8,14 +10,18 @@ import { PorfolioService } from 'src/app/servicios/porfolio.service';
 })
 export class MiPerfilComponent implements OnInit {
 
-  miPortfolio:any;
+  // miPortfolio:any;
+  usuario:Usuario = new Usuario("","","","","","","","","");
 
-  constructor(private datosPortfolio:PorfolioService) { }
+  constructor(private datosUsuario:UsuarioService) { }
 
   ngOnInit(): void {
-    this.datosPortfolio.obtenerDatos().subscribe(data => {
-      this.miPortfolio = data;
-    })
+    this.datosUsuario.getUsuario().subscribe( data => {
+      this.usuario = data;
+    });
+    // this.datosPortfolio.obtenerDatos().subscribe(data => {
+    //   this.miPortfolio = data;
+    // })
   }
 
 }
