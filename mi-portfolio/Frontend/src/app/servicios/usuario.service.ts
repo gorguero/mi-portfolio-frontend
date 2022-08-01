@@ -9,12 +9,12 @@ import { Usuario } from '../model/usuario.model';
 })
 export class UsuarioService {
 
-  URL = 'http://localhost:8080/usuario/'
+  URL = 'http://localhost:8080/usuario/';
 
   constructor(private http:HttpClient) { }
 
-  public getUsuario():Observable<Usuario>{
-    return this.http.get<Usuario>(this.URL + 'obtener');
+  public findUsuario(idUser?:number):Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.URL}encontrar/${idUser}`);
   }
 
 }

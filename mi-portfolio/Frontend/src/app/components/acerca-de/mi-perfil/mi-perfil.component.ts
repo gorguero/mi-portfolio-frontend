@@ -16,7 +16,7 @@ export class MiPerfilComponent implements OnInit {
   constructor(private datosUsuario:UsuarioService) { }
 
   ngOnInit(): void {
-    this.datosUsuario.getUsuario().subscribe( data => {
+    this.datosUsuario.findUsuario(41).subscribe( data => {
       this.usuario = data;
     });
     // this.datosPortfolio.obtenerDatos().subscribe(data => {
