@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/model/usuario.model';
 import { PorfolioService } from 'src/app/servicios/porfolio.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-sobre-mi',
@@ -8,18 +10,24 @@ import { PorfolioService } from 'src/app/servicios/porfolio.service';
 })
 export class SobreMiComponent implements OnInit {
 
-  sobreMi:any;
+  // sobreMi:any;
   disponibilidad:any;
   informacionDeContacto:any;
+  usuario:Usuario = new Usuario(41,"","","","","","","","","");
 
-  constructor(private dataPorfolio:PorfolioService) { }
+  constructor(private dataUsuario:UsuarioService, private datosPortfolio:PorfolioService) { }
 
   ngOnInit(): void {
-    this.dataPorfolio.obtenerDatos().subscribe(data => {
-      this.sobreMi = data.sobreMi;
+    this.dataUsuario.findUsuario(this.usuario.id).subscribe(data => {
+      this.usuario = data;
+    })
+    
+    /* Datos reales moqueados en JSON */
+    this.datosPortfolio.obtenerDatos().subscribe(data => {
       this.disponibilidad = data.disponibilidad;
       this.informacionDeContacto = data.infoDeContacto;
     })
+    
   }
 
 }

@@ -11,12 +11,12 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 export class MiPerfilComponent implements OnInit {
 
   // miPortfolio:any;
-  usuario:Usuario = new Usuario("","","","","","","","","");
+  usuario:Usuario = new Usuario(41,"","","","","","","","","");
 
   constructor(private datosUsuario:UsuarioService) { }
 
   ngOnInit(): void {
-    this.datosUsuario.findUsuario(41).subscribe( data => {
+    this.datosUsuario.findUsuario(this.usuario.id).subscribe( data => {
       this.usuario = data;
     });
     // this.datosPortfolio.obtenerDatos().subscribe(data => {
