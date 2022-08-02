@@ -11,14 +11,14 @@
             <li *ngFor="let proyecto of proyectosList">
                 <div class="col">
                     <div class="card">
-                        <img [src]="proyecto.portada" class="card-img-top" alt="...">
+                        <img [src]="proyecto.link_portada" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">{{proyecto.titulo}}</h5>
                             <p class="card-text">
                                 {{proyecto.descripcion}}
                             </p>
-                            <p>{{proyecto.desarrolladaCon}}</p>
-                            <a [href]="proyecto.enlace" target="_BLANK" class="stretched-link"></a>
+                            <!-- <p>{{proyecto.desarrolladaCon}}</p> -->
+                            <a [href]="proyecto.link_proyecto" target="_BLANK" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
