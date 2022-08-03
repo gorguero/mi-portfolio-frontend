@@ -9,13 +9,14 @@ import { TecnologiaService } from 'src/app/servicios/tecnologia.service';
 })
 export class TecnologiasComponent implements OnInit {
 
-  tecnologia:any;
+  tecnologiaList:any;
 
   constructor( private dataTecnologia:TecnologiaService ) { }
 
   ngOnInit(): void {
     this.dataTecnologia.getTenologia().subscribe( data => {
-      this.tecnologia = data;
+      console.log(data)
+      this.tecnologiaList = data;
     } )
   }
 
