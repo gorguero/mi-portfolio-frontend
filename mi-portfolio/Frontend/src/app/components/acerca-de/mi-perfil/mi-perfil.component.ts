@@ -11,7 +11,7 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 export class MiPerfilComponent implements OnInit {
 
   // miPortfolio:any;
-  persona:Persona = new Persona(43,"","","","","","","","","");
+  persona:Persona = new Persona(1,"","","","","","","","","");
 
   constructor(private datosPersona:PersonaService) { }
 

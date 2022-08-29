@@ -13,7 +13,7 @@ export class SobreMiComponent implements OnInit {
   // sobreMi:any;
   disponibilidad:any;
   informacionDeContacto:any;
-  persona:Persona = new Persona(43,"","","","","","","","","");
+  persona:Persona = new Persona(1,"","","","","","","","","");
 
   constructor(private dataPersona:PersonaService, private datosPortfolio:PorfolioService) { }
 
