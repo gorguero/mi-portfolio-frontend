@@ -2,62 +2,37 @@
 
 <p class="display-5 ms-5 my-4 fw-bold text-center text-uppercase lh-lg">Educación</p>
 
-<article class="d-flex justify-content-evenly align-items-center">
+<ul style="list-style: none;">
+    <li *ngFor="let educacion of educacionList">
 
-    <img src="img/LOGO-NUEVO-WEB.png" alt="Logo Instituto San Martin" style="width: 10rem;">
+        <article class="d-flex justify-content-evenly ">
 
-    <div class="text-center py-1">
+            <img [src]="educacion.link_logo" alt="Logo Instituto San Martin" style="width: 10rem;">
+        
+            <div class="text-center py-1">
+        
+                <p class="fs-5 fw-bold pt-2">{{educacion.nombreInsti}}</p>
+        
+                <p class="fst-italic fw-bold">{{educacion.titulo}}</p>
+        
+                <p>{{educacion.fechaInicio}} - {{educacion.fechaFinal}}</p>
 
-        <p class="fs-5 fw-bold pt-2">Instituto Superior General San Martin</p>
+                <p>Id: {{educacion.idEducacion}}</p>
+        
+            </div>
 
-        <p class="fst-italic fw-bold">Técnico Superior en Desarrollo de Software</p>
+                <!-- Button trigger modal de editar educacion-->
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarEducación">
+                    <i class="bi bi-pencil-fill fs-1"></i>
+                </button>
+                <button (click)="eliminarEducacion(educacion.idEducacion)" type="button" class="btn btn-dark ms-1">Eliminar</button>
+                    
+        </article>
+        <hr class="w-25 mx-auto my-4 border border-1 border-dark opacity-75">
+    </li>
+</ul>
 
-        <p>2019 - 2022</p>
 
-    </div>
-
-    <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-
-</article>
-
-<hr class="w-25 mx-auto my-4 border border-1 border-dark opacity-75">
-
-<article class="d-flex justify-content-evenly mt-2 align-items-center">
-
-    <img src="img/logo-udemy.png" alt="Logo udemy" style="width: 10rem;">
-
-    <div class="text-center py-4 w-50">
-
-        <a href="https://www.udemy.com/course/master-en-css-responsive-sass-flexbox-grid-y-boostrap-4/" target="_BLANK"
-            class="fs-5 fw-bold link-dark text-decoration-none">Master en CSS:
-            Responsive, SASS,<br> Flexbox, Grid y Bootstrap</a>
-
-        <p class="pt-3">Dic - 2021</p>
-
-    </div>
-
-    <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-
-</article>
-
-<hr class="w-25 mx-auto my-4 border border-1 border-dark opacity-75">
-
-<article class="d-flex justify-content-evenly mt-2 align-items-center">
-
-    <img src="https://argentinaprograma.inti.gob.ar/pluginfile.php/1/theme_moove/logo/1643935033/APLogo-20-20.png"
-        alt="Logo Argentina Programa" style="width: 10rem;">
-
-    <div class="text-center py-4 w-50">
-
-        <p class="fs-5 fw-bold pt-2">Argentina Programa: <br> #SéProgramar</p>
-
-        <p class="pt-2">Dic - 2021</p>
-
-    </div>
-
-    <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-
-</article>
 
 <div class="d-flex justify-content-evenly mt-4">
     <!-- Button trigger modal de agregar educacion-->
@@ -65,51 +40,115 @@
         <i class="bi bi-plus-circle-fill fs-1"></i>
     </button>
 
-    <!-- Button trigger modal de editar educacion-->
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarEducación">
-        <i class="bi bi-pencil-fill fs-1"></i>
-    </button>
-
     <!-- Modal para agregar educación -->
     <div class="modal fade" id="btnAgregarEducación" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="agregarEducaciónLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
+
                 <div class="modal-header">
                     <h5 class="modal-title text-white" id="agregarEducaciónLabel">Agregar una nueva
                         educación</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+
+                <form [formGroup]="form">
+
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label text-white-50">Cargar
-                                logo</label>
-                            <input class="form-control" type="file" id="formFile">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label text-white-50">Nombre del curso o
-                                institutción:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Aqui iria el nombre de institutción">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label text-white-50">Titulo:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Aqui iria el titulo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label text-white-50">Fecha de
-                                finalización:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Aqui iria la fecha de finalización">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="linkLogo" class="form-label text-white-50">Ingresar link de logo</label>
+                                <input 
+                                    formControlName="link_logo" 
+                                    class="form-control form-control-lg" 
+                                    type="text" id="link_Logo" 
+                                    placeholder="Ingrese link de su imagen de perfil"
+                                    [ngClass]="{'is-invalid': LinkLogo?.errors && LinkLogo?.touched, 'is-valid': !LinkLogo?.errors && LinkLogo?.touched}"
+                                >
+                                <div *ngIf="LinkLogo?.errors && LinkLogo?.touched">
+                                    <p *ngIf="LinkLogo?.hasError('required')" class="text-danger">
+                                        El link de su imagen de perfil es requerido.
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombreInstitucion" class="form-label text-white-50">Nombre del curso o institutción:</label>
+                                <input
+                                    formControlName="nombreInstitucion" 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="inputNombreInstitucion" 
+                                    placeholder="Ingrese nombre de institutción"
+                                    [ngClass]="{'is-invalid': NombreInstitucion?.errors && NombreInstitucion?.touched, 'is-valid': !NombreInstitucion?.errors && NombreInstitucion?.touched}"
+                                    >
+                                    <div *ngIf="NombreInstitucion?.errors && NombreInstitucion?.touched">
+                                        <p *ngIf="NombreInstitucion?.hasError('required')" class="text-danger">
+                                            El nombre de la institución es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="titulo" class="form-label text-white-50">Titulo:</label>
+                                <input
+                                    formControlName="titulo" 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="inputTitulacion" 
+                                    placeholder="Ingrese nombre de su titulación"
+                                    [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}"
+                                    >
+                                    <div *ngIf="Titulo?.errors && Titulo?.touched">
+                                        <p *ngIf="Titulo?.hasError('required')" class="text-danger">
+                                            El nombre de la titulación es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaInicio" class="form-label text-white-50">Fecha
+                                    de inicio:</label>
+                                    <input
+                                    formControlName="fechaInicio" 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="inputFechaInicio" 
+                                    placeholder="Ingrese la fecha de inicio (dd-mm-yyyy)"
+                                    [ngClass]="{'is-invalid': FechaInicio?.errors && FechaInicio?.touched, 'is-valid': !FechaInicio?.errors && FechaInicio?.touched}"
+                                    >
+                                    <div *ngIf="FechaInicio?.errors && FechaInicio?.touched">
+                                        <p *ngIf="FechaInicio?.hasError('required')" class="text-danger">
+                                            La fecha de inicio es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaFin" class="form-label text-white-50">Fecha de
+                                    finalización:</label>
+                                    <input
+                                    formControlName="fechaFin" 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="inputFechaFin" 
+                                    placeholder="Ingrese la fecha de fin (dd-mm-yyyy)"
+                                    [ngClass]="{'is-invalid': FechaFin?.errors && FechaFin?.touched, 'is-valid': !FechaFin?.errors && FechaFin?.touched}"
+                                    >
+                                    <div *ngIf="FechaFin?.errors && FechaFin?.touched">
+                                        <p *ngIf="FechaFin?.hasError('required')" class="text-danger">
+                                            La fecha de fin es requerido.
+                                        </p>
+                                    </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Agregar
-                        nueva educación</button>
-                </div>
+    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="AgregarEducacion()" data-bs-dismiss="modal">Agregar nueva educación</button>
+                    </div>
+
+                </form>
+
+                
+
             </div>
         </div>
     </div>
@@ -126,9 +165,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label text-white-50">Nro
-                            de articulo educativo a editar:</label>
-                        <input type="number" class="form-control" id="exampleFormControlInput1">
+                        <label for="exampleFormControlInput1" class="form-label text-white-50">Id de la educacion:</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label text-white-50">Cargar logo</label>
@@ -147,14 +185,19 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label text-white-50">Fecha
+                            de inicio:</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Aqui iria la fecha de inicio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label text-white-50">Fecha
                             de finalización:</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Aqui iria la fecha de finalización">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar
-                        educación</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar educación</button>
                 </div>
             </div>
         </div>

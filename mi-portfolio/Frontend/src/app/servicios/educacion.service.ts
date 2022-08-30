@@ -20,4 +20,12 @@ export class EducacionService {
     return this.http.get<Educacion>(`${this.URL}encontrar/${idEducacion}`);
   }
 
+  public agregarEducacion(educacion:Educacion):Observable<Educacion>{
+    return this.http.post<Educacion>(`${this.URL}crear`, educacion);
+  }
+
+  public eliminarEducacion(id:number):Observable<any>{
+    return this.http.delete<any>(`${this.URL}borrar/${id}`);
+  }
+
 }

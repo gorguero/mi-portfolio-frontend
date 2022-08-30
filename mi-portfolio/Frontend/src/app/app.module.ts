@@ -28,6 +28,7 @@ import { HabilidadesAdmiComponent } from './administrador/habilidades-admi/habil
 import { TecnologiasAdmiComponent } from './administrador/tecnologias-admi/tecnologias-admi.component';
 import { ProyectosAdmiComponent } from './administrador/proyectos-admi/proyectos-admi.component';
 import { EncabezadoAdmiComponent } from './administrador/encabezado-admi/encabezado-admi.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { EncabezadoAdmiComponent } from './administrador/encabezado-admi/encabez
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
