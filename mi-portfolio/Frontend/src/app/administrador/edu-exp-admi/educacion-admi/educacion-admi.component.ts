@@ -61,49 +61,24 @@ export class EducacionAdmiComponent implements OnInit {
     this.dataEducacion.agregarEducacion(educacion).subscribe(
       data => {
         console.log(data);
-        alert("SE AGREGO");
+        alert("Se agrego una nueva educación correctamente");
         this.ObtenerEducacion();
       }, err => {
         console.log(err);
+        alert("No se pudo agregar una educación");
         this.ObtenerEducacion();
       }
     );
 
   }
 
-  // public AgregarNuevaEducacion(){
-
-  //   // var link_logo = (<HTMLInputElement>document.getElementById('link_Logo')).value;
-  //   // var nombreInstitucion = (<HTMLInputElement>document.getElementById('inputNombreInstitucion')).value;
-  //   // var titulo = (<HTMLInputElement>document.getElementById('inputTitulacion')).value;
-  //   // var fechaInicio = (<HTMLInputElement>document.getElementById('inputFechaInicio')).value;
-  //   // var fechaFin = (<HTMLInputElement>document.getElementById('inputFechaFin')).value;
-    
-  //   // const educacion:Educacion = new Educacion(nombreInstitucion, link_logo, titulo, fechaInicio, fechaFin);
-
-  // //   this.dataEducacion.agregarEducacion(educacion).subscribe(
-  // //     data => {
-  // //       alert("Añadido exitosamente");
-  // //     }
-  // //   )
-  // //   console.log(educacion);
-  // // }
-
-  // // public eliminarEducacion(id:number){
-  // //   this.dataEducacion.eliminarEducacion(id).subscribe(
-  // //     data => {
-  // //       alert("Eliminado");       
-  // //     }
-  // //   );
-  // }
-
-    public eliminarEducacion(id:number){
-      this.dataEducacion.eliminarEducacion(id).subscribe(
-        data => {
-          alert("Eliminado" + data);       
-        }
-      );     
-    }
+  public eliminarEducacion(id:number){
+    this.dataEducacion.eliminarEducacion(id).subscribe(
+      data => {
+        alert("Eliminado" + data);       
+      }
+    );     
+  }
 
 
   get LinkLogo(){
