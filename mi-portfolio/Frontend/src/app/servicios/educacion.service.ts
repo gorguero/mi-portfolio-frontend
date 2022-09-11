@@ -28,4 +28,8 @@ export class EducacionService {
     return this.http.delete<any>(`${this.URL}borrar/${id}`);
   }
 
+  public editarEducacion(educacion:Educacion):Observable<Educacion>{
+    return this.http.put<Educacion>(`${this.URL}editar`, educacion);
+  }
+
 }
