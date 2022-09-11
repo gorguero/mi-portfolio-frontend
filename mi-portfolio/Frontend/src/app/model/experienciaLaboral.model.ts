@@ -7,8 +7,7 @@ export class ExperienciaLaboral{
     fechaIngreso:String;
     fechaFin:String;
 
-    constructor(id:number, nombreEmpresa:String, link_logo:String, nombrePuesto:String, fechaIngreso:String, fechaFin:String){
-        this.id = id;
+    constructor(nombreEmpresa:String, link_logo:String, nombrePuesto:String, fechaIngreso:String, fechaFin:String){
         this.nombreEmpresa = nombreEmpresa;
         this.link_logo = link_logo;
         this.nombrePuesto = nombrePuesto;
