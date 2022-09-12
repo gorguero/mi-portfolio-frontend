@@ -17,4 +17,12 @@ export class PersonaService {
     return this.http.get<Persona>(`${this.URL}encontrar/${idPersona}`);
   }
 
+  public getPersona():Observable<Persona[]>{
+    return this.http.get<Persona[]>(`${this.URL}obtener`);
+  }
+
+  // public editPersona(idPerson:number, nuevoNombre:string, nuevoApellido:string,):Observable<Persona>{
+  //   return this.http.put<any>(`${this.URL}editar/${idPersona}`);
+  // }
+
 }
