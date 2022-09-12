@@ -111,8 +111,6 @@ export class ExperiencialabAdmiComponent implements OnInit {
     this.dataExpLaboral.detail(this.idComponenteEdit).subscribe(
       data => {
         this.expLaboral = data;
-        console.log(data);
-        console.log(this.expLaboral)
       },err =>{
         alert("Error al modificar experiencia");
       }
