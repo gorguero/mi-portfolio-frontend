@@ -12,23 +12,33 @@ import { EducacionService } from 'src/app/servicios/educacion.service';
 export class EducacionAdmiComponent implements OnInit {
 
   educacionList:any;
+
   link_logo:string = '';
   nombreInsti:string = '';
   titulo:string = '';
   fechaInicio:string = '';
   fechaFinal:string = '';
 
-  form:FormGroup;
+  link_logo_edit:string = '';
+  nombreInsti_edit:string = '';
+  titulo_edit:string = '';
+  fechaInicio_edit:string = '';
+  fechaFinal_edit:string = '';
+
+  formEducacion:FormGroup;
   form_edit:FormGroup;
 
+  educacion:Educacion;
+  idCompenenteEdit:any;
+
   constructor(private dataEducacion:EducacionService, private formBuilder:FormBuilder) {
-    this.form = this.formBuilder.group(
+    this.formEducacion = this.formBuilder.group(
       {
         link_logo:['',[Validators.required]],
-        nombreInstitucion:['',[Validators.required]],
+        nombreInsti:['',[Validators.required]],
         titulo:['',[Validators.required]],
         fechaInicio:['',[Validators.required]],
-        fechaFin:['',[Validators.required]]
+        fechaFinal:['',[Validators.required]]
       }
     );
 
@@ -51,8 +61,18 @@ export class EducacionAdmiComponent implements OnInit {
   public ObtenerEducacion(){
     this.dataEducacion.getEducacion().subscribe(data => {
       this.educacionList = data;
-      console.log(this.educacionList)
     })
+  }
+
+  public obtenerId(idEducacion?:number){
+    this.idCompenenteEdit = idEducacion;
+
+    this.dataEducacion.detail(this.idCompenenteEdit).subscribe(
+      data => {
+        this.educacion = data;
+      }
+    )
+
   }
 
   public AgregarEducacion(){
@@ -63,23 +83,18 @@ export class EducacionAdmiComponent implements OnInit {
     this.fechaInicio = this.FechaInicio?.value;
     this.fechaFinal = this.FechaFin?.value;
 
-    console.log(this.nombreInsti, this.fechaFinal);
-
     const educacion = new Educacion(this.nombreInsti, this.link_logo, this.titulo, this.fechaInicio, this.fechaFinal);
-
-    console.log(educacion);
 
     this.dataEducacion.agregarEducacion(educacion).subscribe(
       data => {
-        console.log(data);
         alert("Se agrego una nueva educación correctamente");
         this.ObtenerEducacion();
       }, err => {
-        console.log(err);
         alert("No se pudo agregar una educación");
       }
     );
 
+    this.form_edit.reset();
   }
 
   public eliminarEducacion(id:number){
@@ -93,66 +108,70 @@ export class EducacionAdmiComponent implements OnInit {
 
   public editarEducacion(){
 
-    this.link_logo = this.LinkLogoEdit?.value;
-    this.nombreInsti = this.NombreInstitucionEdit?.value;
-    this.titulo = this.TituloEdit?.value;
-    this.fechaInicio = this.FechaInicioEdit?.value;
-    this.fechaFinal = this.FechaFinEdit?.value;
-
-    const educacionEdit = new Educacion(this.nombreInsti, this.link_logo, this.titulo, this.fechaInicio, this.fechaFinal);
-
-    console.log(educacionEdit);
-
-    this.dataEducacion.editarEducacion(educacionEdit).subscribe(
+    this.dataEducacion.detail(this.idCompenenteEdit).subscribe(
       data => {
-        console.log(data);
-        alert("Se actualizo correctamente");
+        this.educacion = data;
+      },err =>{
+        alert("Error al modificar experiencia");
+      }
+    )
+
+    this.educacion.link_logo = this.LinkLogoEdit?.value;
+    this.educacion.nombreInsti = this.NombreInstitucionEdit?.value;
+    this.educacion.titulo = this.TituloEdit?.value;
+    this.educacion.fechaInicio = this.FechaInicioEdit?.value;
+    this.educacion.fechaFinal = this.FechaFinEdit?.value;
+  
+    this.dataEducacion.editarEducacion(this.idCompenenteEdit, this.educacion).subscribe(
+      data => {
+        alert("Se actualizo la educación correctamente");
         this.ObtenerEducacion();
       }, err => {
-        console.log(err);
         alert("No se pudo actualizar la educación");
       }
     );
+
+    this.form_edit.reset();
   }
 
   get LinkLogo(){
-    return this.form.get('link_logo');
+    return this.formEducacion.get('link_logo');
   }
 
   get NombreInstitucion(){
-    return this.form.get('nombreInstitucion');
+    return this.formEducacion.get('nombreInsti');
   }
 
   get Titulo(){
-    return this.form.get('titulo');
+    return this.formEducacion.get('titulo');
   }
 
   get FechaInicio(){
-    return this.form.get('fechaInicio');
+    return this.formEducacion.get('fechaInicio');
   }
 
   get FechaFin(){
-    return this.form.get('fechaFin');
+    return this.formEducacion.get('fechaFinal');
   }
 
   get LinkLogoEdit(){
-    return this.form.get('link_logo_edit');
+    return this.form_edit.get('link_logo_edit');
   }
 
   get NombreInstitucionEdit(){
-    return this.form.get('nombreInstitucion_edit');
+    return this.form_edit.get('nombreInstitucion_edit');
   }
 
   get TituloEdit(){
-    return this.form.get('titulo_edit');
+    return this.form_edit.get('titulo_edit');
   }
 
   get FechaInicioEdit(){
-    return this.form.get('fechaInicio_edit');
+    return this.form_edit.get('fechaInicio_edit');
   }
 
   get FechaFinEdit(){
-    return this.form.get('fechaFin_edit');
+    return this.form_edit.get('fechaFin_edit');
   }
 
 }

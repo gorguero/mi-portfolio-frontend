@@ -30,7 +30,7 @@ export class ExperiencialabAdmiComponent implements OnInit {
   formExpLaboral:FormGroup;
   form_edit:FormGroup;
 
-  constructor(private dataExpLaboral: ExperienciaLaboralService, private formBuilder:FormBuilder,  private activatedRouter: ActivatedRoute) { 
+  constructor(private dataExpLaboral: ExperienciaLaboralService, private formBuilder:FormBuilder) { 
     this.formExpLaboral = this.formBuilder.group(
       {
         nombreEmpresa:['',[Validators.required]],
