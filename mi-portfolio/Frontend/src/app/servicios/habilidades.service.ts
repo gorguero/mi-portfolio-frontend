@@ -15,4 +15,25 @@ export class HabilidadesService {
   public getSoftskill():Observable<Habilidades[]>{
     return this.http.get<Habilidades[]>(`${this.URL}obtener`);
   }
+
+  public agregarSoftskill(softskill:Habilidades):Observable<Habilidades>{
+    return this.http.post<Habilidades>(`${this.URL}crear`, softskill);
+  }
+
+  public eliminarSoftskill(id:number):Observable<any>{
+    return this.http.delete<any>(`${this.URL}borrar/${id}`);
+  }
+
+  public editarSoftskill(id:number, softskill:Habilidades):Observable<any>{
+    return this.http.put<any>(`${this.URL}editar/${id}`, softskill);
+  }
+
+  // public findSoftskill(id:number):Observable<Habilidades>{
+  //   return this.http.get<Habilidades>(`${this.URL}encontrar/${id}`);
+  // }
+
+  public detail(id:number):Observable<Habilidades>{
+    return this.http.get<Habilidades>(`${this.URL}detail/${id}`);
+  }
+
 }
