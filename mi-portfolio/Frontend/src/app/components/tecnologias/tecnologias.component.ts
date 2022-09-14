@@ -14,10 +14,11 @@ export class TecnologiasComponent implements OnInit {
   constructor( private dataTecnologia:TecnologiaService ) { }
 
   ngOnInit(): void {
-    this.dataTecnologia.getTenologia().subscribe( data => {
-      console.log(data)
-      this.tecnologiaList = data;
-    } )
+    this.dataTecnologia.getTenologia().subscribe( 
+      data => {
+        this.tecnologiaList = data;
+      } 
+    )
   }
 
 }

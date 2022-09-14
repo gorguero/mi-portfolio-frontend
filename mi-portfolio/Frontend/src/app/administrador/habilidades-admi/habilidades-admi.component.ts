@@ -75,7 +75,6 @@ export class HabilidadesAdmiComponent implements OnInit {
     if(this.nivelSkill >=0 && this.nivelSkill <= 100){
       this.softskilService.agregarSoftskill(softskill).subscribe(
         data => {
-          console.log(softskill);
           alert("Se agrego una nueva softskill correctamente");
           this.ObtenerHabilidades();
         }

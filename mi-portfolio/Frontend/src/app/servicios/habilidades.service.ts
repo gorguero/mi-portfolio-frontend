@@ -28,10 +28,6 @@ export class HabilidadesService {
     return this.http.put<any>(`${this.URL}editar/${id}`, softskill);
   }
 
-  // public findSoftskill(id:number):Observable<Habilidades>{
-  //   return this.http.get<Habilidades>(`${this.URL}encontrar/${id}`);
-  // }
-
   public detail(id:number):Observable<Habilidades>{
     return this.http.get<Habilidades>(`${this.URL}detail/${id}`);
   }
