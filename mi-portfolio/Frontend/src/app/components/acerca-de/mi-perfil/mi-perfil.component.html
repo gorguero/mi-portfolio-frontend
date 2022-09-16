@@ -1,12 +1,19 @@
 <div class="mx-auto my-4" style="width: 20rem;">
 
-    <img [src]="persona.link_perfil" class="card-img-top rounded-circle" alt="Imagen de perfil">
+    <ul style="list-style: none;">
+        <li *ngFor="let persona of personaList">
 
-    <div class="card-body">
+            <img [src]="persona.link_perfil" class="card-img-top rounded-circle" alt="Imagen de perfil">
 
-        <p class="card-title text-center fs-4 fw-bold">{{persona.nombre}} {{persona.apellido}}</p>
-        <p class="card-subtitle text-center fs-6 lh-lg fw-bolder">{{persona.perfilLaboral}}</p>
-        <p class="card-text text-center">{{persona.ubicacion}}</p>
+            <div class="card-body">
 
-    </div>
+                <p class="card-title text-center fs-5 fw-bold">{{persona.nombre}} {{persona.apellido}}</p>
+                <p class="card-subtitle text-center fs-6 lh-lg fw-bolder">{{persona.perfilLaboral}}</p>
+                <p class="card-text text-center">{{persona.ubicacion}}</p>
+
+            </div>
+
+        </li>
+    </ul>
+
 </div>

@@ -1,69 +1,196 @@
 <div class="mx-auto my-4" style="width: 20rem;" id="seccion-perfil">
 
-    <img src="img/perfil.png" class="card-img-top rounded-circle" alt="Imagen de perfil">
+    <ul style="list-style: none;">
+        <li *ngFor="let persona of personaList">
 
-    <div class="card-body">
+            <img [src]="persona.link_perfil" class="card-img-top rounded-circle" alt="Imagen de perfil">
 
-        <p class="card-title text-center fs-4 fw-bold">Juan Cruz Agüero Luna</p>
-        <p class="card-subtitle text-center fs-6 lh-lg fw-bolder">Desarrollador Web Full Stack Jr
-        </p>
-        <p class="card-text text-center">Catamarca, Argentina</p>
+            <div class="card-body">
 
-    </div>
+                <p class="card-title text-center fs-5 fw-bold">{{persona.nombre}} {{persona.apellido}}</p>
+                <p class="card-subtitle text-center fs-6 lh-lg fw-bolder">{{persona.perfilLaboral}}</p>
+                <p class="card-text text-center">{{persona.ubicacion}}</p>
 
-    <!-- Button trigger modal de perfil -->
-    <div class="col text-center">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-            data-bs-target="#modalPerfil">
-            Editar perfil
-        </button>
-    </div>
+            </div>
 
+            <!-- Button trigger modal de perfil -->
+            <div class="col text-center">
+                <button type="button" class="btn btn-dark" (click)="obtenerId(persona.idPersona)" data-bs-toggle="modal" data-bs-target="#modalPerfil">
+                    Editar perfil
+                </button>
+            </div>
+
+        </li>
+    </ul>
+
+    
     <!-- Modal de perfil -->
-    <div class="modal fade" id="modalPerfil" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalPerfil" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
+
                 <div class="modal-header">
                     <h5 class="modal-title text-white" id="staticBackdropLabel">Edición de perfil
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label text-white-50">Cargar imagen</label>
-                        <input class="form-control" type="file" id="formFile">
+
+                <form [formGroup]="formPersonaEdit">
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nombre_edit" class="form-label text-white-50">Nombre</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="nombre_edit" 
+                                formControlName="nombre_edit"
+                                placeholder="Ingrese su nombre"
+                                [ngClass]="{'is-invalid': NombreEdit?.errors && NombreEdit?.touched, 'is-valid': !NombreEdit?.errors && NombreEdit?.touched}"
+                                >
+                            <div *ngIf="NombreEdit?.errors && NombreEdit?.touched">
+                                <p *ngIf="NombreEdit?.hasError('required')" class="text-danger">
+                                    El nombre es requerido.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellido_edit" class="form-label text-white-50">Apellido:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="apellido_edit" 
+                                formControlName="apellido_edit"
+                                placeholder="Ingrese su apellido"
+                                [ngClass]="{'is-invalid': ApellidoEdit?.errors && ApellidoEdit?.touched, 'is-valid': !ApellidoEdit?.errors && ApellidoEdit?.touched}"
+                                >
+                            <div *ngIf="ApellidoEdit?.errors && ApellidoEdit?.touched">
+                                <p *ngIf="ApellidoEdit?.hasError('required')" class="text-danger">
+                                    El apellido es requerido.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="presentacionUno_edit" class="form-label text-white-50">Presentación parte 1:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="presentacionUno_edit" 
+                                formControlName="presentacionUno_edit"
+                                placeholder="Ingrese su presentacion (255 caracteres máximo)"
+                                [ngClass]="{'is-invalid': PresentacionUnoEdit?.errors && PresentacionUnoEdit?.touched, 'is-valid': !PresentacionUnoEdit?.errors && PresentacionUnoEdit?.touched}"
+                                >
+                            <div *ngIf="PresentacionUnoEdit?.errors && PresentacionUnoEdit?.touched">
+                                <p *ngIf="PresentacionUnoEdit?.hasError('required')" class="text-danger">
+                                    La presentación es requerida.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="presentacionDos_edit" class="form-label text-white-50">Presentación parte 2:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="presentacionDos_edit" 
+                                formControlName="presentacionDos_edit"
+                                placeholder="Ingrese su presentacion (255 caracteres máximo)"
+                                [ngClass]="{'is-invalid': PresentacionDosEdit?.errors && PresentacionDosEdit?.touched, 'is-valid': !PresentacionDosEdit?.errors && PresentacionDosEdit?.touched}"
+                                >
+                            <div *ngIf="PresentacionDosEdit?.errors && PresentacionDosEdit?.touched">
+                                <p *ngIf="PresentacionDosEdit?.hasError('required')" class="text-danger">
+                                    La presentación es requerida.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono_edit" class="form-label text-white-50">Teléfono:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="telefono_edit" 
+                                formControlName="telefono_edit"
+                                placeholder="Ingrese su teléfono"
+                                [ngClass]="{'is-invalid': TelefonoEdit?.errors && TelefonoEdit?.touched, 'is-valid': !TelefonoEdit?.errors && TelefonoEdit?.touched}"
+                                >
+                            <div *ngIf="TelefonoEdit?.errors && TelefonoEdit?.touched">
+                                <p *ngIf="TelefonoEdit?.hasError('required')" class="text-danger">
+                                    El teléfono es requerido.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email_edit" class="form-label text-white-50">Email:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="email_edit" 
+                                formControlName="email_edit"
+                                placeholder="Ingrese su presentacion (255 caracteres máximo)"
+                                [ngClass]="{'is-invalid': EmailEdit?.errors && EmailEdit?.touched, 'is-valid': !EmailEdit?.errors && EmailEdit?.touched}"
+                                >
+                            <div *ngIf="EmailEdit?.errors && EmailEdit?.touched">
+                                <p *ngIf="EmailEdit?.hasError('required')" class="text-danger">
+                                    El email es requerido.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ubicacion_edit" class="form-label text-white-50">Ubicacion:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="ubicacion_edit" 
+                                formControlName="ubicacion_edit"
+                                placeholder="Ingrese su presentacion (255 caracteres máximo)"
+                                [ngClass]="{'is-invalid': UbicacionEdit?.errors && UbicacionEdit?.touched, 'is-valid': !UbicacionEdit?.errors && UbicacionEdit?.touched}"
+                                >
+                            <div *ngIf="UbicacionEdit?.errors && UbicacionEdit?.touched">
+                                <p *ngIf="UbicacionEdit?.hasError('required')" class="text-danger">
+                                    La ubicación es requerida.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="link_perfil_edit" class="form-label text-white-50">Ingrese el link de su imagen de perfil:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="link_perfil_edit" 
+                                formControlName="link_perfil_edit"
+                                placeholder="Ingrese su imagen como link"
+                                [ngClass]="{'is-invalid': LinkPerfilEdit?.errors && LinkPerfilEdit?.touched, 'is-valid': !LinkPerfilEdit?.errors && LinkPerfilEdit?.touched}"
+                                >
+                            <div *ngIf="LinkPerfilEdit?.errors && LinkPerfilEdit?.touched">
+                                <p *ngIf="LinkPerfilEdit?.hasError('required')" class="text-danger">
+                                    El link es requerida.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="perfilLaboral_edit" class="form-label text-white-50">Ingrese su perfil laboral:</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="perfilLaboral_edit" 
+                                formControlName="perfilLaboral_edit"
+                                placeholder="Ingrese su perfil laboral"
+                                [ngClass]="{'is-invalid': PerfilLaboralEdit?.errors && PerfilLaboralEdit?.touched, 'is-valid': !PerfilLaboralEdit?.errors && PerfilLaboralEdit?.touched}"
+                                >
+                            <div *ngIf="PerfilLaboralEdit?.errors && PerfilLaboralEdit?.touched">
+                                <p *ngIf="PerfilLaboralEdit?.hasError('required')" class="text-danger">
+                                    El perfil laboral es requerido.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1"
-                            class="form-label text-white-50">Nombre:</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Aqui iria el nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1"
-                            class="form-label text-white-50">Titulación:</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Aqui iria el titulo">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1"
-                            class="form-label text-white-50">Ubicación:</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Aqui iria la ubicacion actual">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1"
-                            class="form-label text-white-50">Ingrese breve biografía</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                            rows="3"></textarea>
-                    </div>
-                </div>
+
+                </form>
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Actualizar perfil</button>
+                    <button type="button" class="btn btn-secondary" (click)="editarSoftskill()" data-bs-dismiss="modal">Actualizar perfil</button>
                 </div>
+
             </div>
         </div>
     </div>

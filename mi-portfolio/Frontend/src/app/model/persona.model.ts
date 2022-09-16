@@ -11,8 +11,7 @@ export class Persona{
     link_perfil:String;
     perfilLaboral:String;
 
-    constructor(id:number, nombre:String, apellido:String, presentacionUno:String, presentacionDos:String, telefono:String, email:String, ubicacion:String, link_perfil:String, perfilLaboral:String){
-        this.id = id;
+    constructor(nombre:String, apellido:String, presentacionUno:String, presentacionDos:String, telefono:String, email:String, ubicacion:String, link_perfil:String, perfilLaboral:String){
         this.nombre = nombre;
         this.apellido = apellido;
         this.presentacionUno = presentacionUno;
