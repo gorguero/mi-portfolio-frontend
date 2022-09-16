@@ -10,18 +10,23 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 })
 export class MiPerfilComponent implements OnInit {
 
-  // miPortfolio:any;
-  persona:Persona = new Persona(1,"","","","","","","","","");
+  
+  personaList:any;
 
-  constructor(private datosPersona:PersonaService) { }
+  constructor(private personaService:PersonaService) { }
 
   ngOnInit(): void {
-    this.datosPersona.findPersona(this.persona.id).subscribe( data => {
-      this.persona = data;
-    });
-    // this.datosPortfolio.obtenerDatos().subscribe(data => {
-    //   this.miPortfolio = data;
-    // })
+    this.obtenerDatos();
+  }
+
+  public obtenerDatos(){
+
+    this.personaService.getPersona().subscribe(
+      data => {
+        this.personaList = data;
+      }
+    )
+
   }
 
 }

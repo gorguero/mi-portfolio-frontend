@@ -6,389 +6,140 @@
     <p class="display-5 pb-5 text-center text-uppercase lh-lg fw-bold">Proyectos</p>
 
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-        <div class="col">
-            <div class="card">
-                <img src="img/portada-BienesRaices.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Proyecto Bienes Raices</h5>
-                    <p class="card-text">Es una página web sobre bienes raices desarrollada a modo de práctica. La
-                        misma
-                        cuenta con una landing page, sección de nosotros, anuncios, blog y contacto.
-                    </p>
-                    <p>Desarrollada con: HTML5 - CSS3.</p>
+
+        <li *ngFor="let proyecto of proyectosList">
+            <div class="col">
+                <div class="card">
+                    <img [src]="proyecto.link_portada" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{proyecto.titulo}}</h5>
+                        <p class="card-text">
+                            {{proyecto.descripcion}}
+                        </p>
+                        <p>Desarrollado con: {{proyecto.tecnologias}}</p>
+                        <a [href]="proyecto.link_proyecto" target="_BLANK" class="stretched-link"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-evenly mt-3">
+                <div class="d-flex justify-content-evenly mt-3">
 
-                <!-- Button Modal Editar Proyecto -->
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarProyecto">
-                    <i class="bi bi-pencil-fill fs-2"></i>
-                </button>
+                    <!-- Button Modal Editar Proyecto -->
+                    <button type="button" class="btn btn-dark" (click)="obtenerId(proyecto.idProyecto)" data-bs-toggle="modal" data-bs-target="#btnEditarProyecto">
+                        <i class="bi bi-pencil-fill fs-2"></i>
+                    </button>
+    
+                    <!-- Modal de Editar Proyecto -->
+                    <div class="modal fade" id="btnEditarProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="editarProyectoLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
 
-                <!-- Modal de Editar Proyecto -->
-                <div class="modal fade" id="btnEditarProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="editarProyectoLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-white" id="editarProyectoLabel">Editar proyecto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Nro de proyecto a editar</label>
-                                    <input class="form-control" type="number" id="formFile">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-white" id="editarProyectoLabel">Editar proyecto</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Cargar imagen del proyecto</label>
-                                    <input class="form-control" type="file" id="formFile">
+
+                                <form [formGroup]="formProyectosEdit">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="link_portada_edit" class="form-label text-white-50">Ingresar link de la portada del proyecto</label>
+                                            <input 
+                                                class="form-control" 
+                                                type="text" 
+                                                id="link_portada_edit"
+                                                formControlName="link_portada_edit"
+                                                placeholder="Ingrese un link de su portada."
+                                                [ngClass]="{'is-invalid': LinkPortadaEdit?.errors && LinkPortadaEdit?.touched, 'is-valid': !LinkPortadaEdit?.errors && LinkPortadaEdit?.touched}"
+                                                >
+                                                <div *ngIf="LinkPortadaEdit?.errors && LinkPortadaEdit?.touched">
+                                                    <p *ngIf="LinkPortadaEdit?.hasError('required')" class="text-danger">
+                                                        El link de su portada es requerido.
+                                                    </p>
+                                                </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="titulo_edit" class="form-label text-white-50">Titulo del proyecto</label>
+                                            <input 
+                                                class="form-control" 
+                                                type="text" 
+                                                id="titulo_edit"
+                                                formControlName="titulo_edit"
+                                                placeholder="Ingrese el titulo del proyecto."
+                                                [ngClass]="{'is-invalid': TituloEdit?.errors && TituloEdit?.touched, 'is-valid': !TituloEdit?.errors && TituloEdit?.touched}"
+                                                >
+                                                <div *ngIf="TituloEdit?.errors && TituloEdit?.touched">
+                                                    <p *ngIf="TituloEdit?.hasError('required')" class="text-danger">
+                                                        El titulo de su proyecto es requerido.
+                                                    </p>
+                                                </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="descripcion_edit" class="form-label text-white-50">Descripción del proyecto</label>
+                                            <textarea 
+                                                class="form-control" 
+                                                id="descripcion_edit"
+                                                rows="3"
+                                                formControlName="descripcion_edit"
+                                                placeholder="Ingrese la descripcion del proyecto."
+                                                [ngClass]="{'is-invalid': DescripcionEdit?.errors && DescripcionEdit?.touched, 'is-valid': !DescripcionEdit?.errors && DescripcionEdit?.touched}"
+                                                >        
+                                            </textarea>
+                                            <div *ngIf="DescripcionEdit?.errors && DescripcionEdit?.touched">
+                                                <p *ngIf="DescripcionEdit?.hasError('required')" class="text-danger">
+                                                    La descripcion de su proyecto es requerido.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tecnologias_edit" class="form-label text-white-50">Tecnologías del proyecto</label>
+                                            <input 
+                                                class="form-control" 
+                                                type="text" 
+                                                id="tecnologias_edit"
+                                                formControlName="tecnologias_edit"
+                                                placeholder="Ingrese las tecnologias del proyecto."
+                                                [ngClass]="{'is-invalid': TecnologiasEdit?.errors && TecnologiasEdit?.touched, 'is-valid': !TecnologiasEdit?.errors && TecnologiasEdit?.touched}"
+                                                >
+                                                <div *ngIf="TecnologiasEdit?.errors && TecnologiasEdit?.touched">
+                                                    <p *ngIf="TecnologiasEdit?.hasError('required')" class="text-danger">
+                                                        La tecnologia de su proyecto es requerido.
+                                                    </p>
+                                                </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="link_proyecto_edit" class="form-label text-white-50">Link del proyecto</label>
+                                            <input 
+                                                class="form-control" 
+                                                type="text" 
+                                                id="link_proyecto_edit"
+                                                formControlName="link_proyecto_edit"
+                                                placeholder="Ingrese el link de su proyecto."
+                                                [ngClass]="{'is-invalid': LinkProyectoEdit?.errors && LinkProyectoEdit?.touched, 'is-valid': !LinkProyectoEdit?.errors && LinkProyectoEdit?.touched}"
+                                                >
+                                                <div *ngIf="LinkProyectoEdit?.errors && LinkProyectoEdit?.touched">
+                                                    <p *ngIf="LinkProyectoEdit?.hasError('required')" class="text-danger">
+                                                        El link hacia su proyecto es requerido.
+                                                    </p>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" (click)="editarProyecto()" data-bs-dismiss="modal">Actualizar proyecto</button>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Titulo del proyecto</label>
-                                    <input class="form-control" type="" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Descripción del proyecto</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Tecnologías del proyecto</label>
-                                    <input class="form-control" type="text" id="formFile">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar proyecto</button>
+
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Button Eliminar Proyecto -->
-                <button type="button" class="btn btn-dark">
-                    <i class="bi bi-x-circle-fill fs-2"></i>
-                </button>
-                
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="img/portada-kondur.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Kondur Skateboards</h5>
-                    <p class="card-text">Página web en proceso de desarrollo para la marca de tablas de skate
-                        catamarqueña Kondur Skateboards.
-                        Cuenta con página principal, sección para ver sus productos, información sobre el team,
-                        contenido audiovisual o "checks" y página de contacto.
-                    </p>
-                    <p>Desarrollada con: HTML5 - CSS3.</p>
+    
+                    <!-- Button Eliminar Proyecto -->
+                    <button type="button" class="btn btn-dark" (click)="eliminarProyecto(proyecto.idProyecto)">
+                        <i class="bi bi-x-circle-fill fs-2"></i>
+                    </button>
+                    
                 </div>
             </div>
-            <div class="d-flex justify-content-evenly mt-3">
-
-                <!-- Button Modal Editar Proyecto -->
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarProyecto">
-                    <i class="bi bi-pencil-fill fs-2"></i>
-                </button>
-
-                <!-- Modal de Editar Proyecto -->
-                <div class="modal fade" id="btnEditarProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="editarProyectoLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-white" id="editarProyectoLabel">Editar proyecto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Nro de proyecto a editar</label>
-                                    <input class="form-control" type="number" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Cargar imagen del proyecto</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Titulo del proyecto</label>
-                                    <input class="form-control" type="" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Descripción del proyecto</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Tecnologías del proyecto</label>
-                                    <input class="form-control" type="text" id="formFile">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar proyecto</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button Eliminar Proyecto -->
-                <button type="button" class="btn btn-dark">
-                    <i class="bi bi-x-circle-fill fs-2"></i>
-                </button>
-                
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="img/portada-cursos.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Cursos Web</h5>
-                    <p class="card-text">Página web sobre cursos de desarrollo web, desarrollada a modo de práctica.
-                    </p>
-                    <p>Desarrollado con: HTML5 - CSS3 - Responsive Design.</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-evenly mt-3">
-
-                <!-- Button Modal Editar Proyecto -->
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarProyecto">
-                    <i class="bi bi-pencil-fill fs-2"></i>
-                </button>
-
-                <!-- Modal de Editar Proyecto -->
-                <div class="modal fade" id="btnEditarProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="editarProyectoLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-white" id="editarProyectoLabel">Editar proyecto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Nro de proyecto a editar</label>
-                                    <input class="form-control" type="number" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Cargar imagen del proyecto</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Titulo del proyecto</label>
-                                    <input class="form-control" type="" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Descripción del proyecto</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Tecnologías del proyecto</label>
-                                    <input class="form-control" type="text" id="formFile">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar proyecto</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button Eliminar Proyecto -->
-                <button type="button" class="btn btn-dark">
-                    <i class="bi bi-x-circle-fill fs-2"></i>
-                </button>
-                
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="img/portada-mail.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Envio de mails</h5>
-                    <p class="card-text">Landing page desarrollada a modo de práctica, en donde simula el envio de
-                        emails.</p>
-                    <p>Desarrollado con: HTML5 - CSS3 - Bootstrap 5 - Javascript.</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-evenly mt-3">
-
-                <!-- Button Modal Editar Proyecto -->
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarProyecto">
-                    <i class="bi bi-pencil-fill fs-2"></i>
-                </button>
-
-                <!-- Modal de Editar Proyecto -->
-                <div class="modal fade" id="btnEditarProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="editarProyectoLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-white" id="editarProyectoLabel">Editar proyecto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Nro de proyecto a editar</label>
-                                    <input class="form-control" type="number" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Cargar imagen del proyecto</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Titulo del proyecto</label>
-                                    <input class="form-control" type="" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Descripción del proyecto</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Tecnologías del proyecto</label>
-                                    <input class="form-control" type="text" id="formFile">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar proyecto</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button Eliminar Proyecto -->
-                <button type="button" class="btn btn-dark">
-                    <i class="bi bi-x-circle-fill fs-2"></i>
-                </button>
-                
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card">
-                <img src="img/portada-buscadorAutos.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Buscador de Autos</h5>
-                    <p class="card-text">Landing page desarrollada a modo de práctica, donde se puede filtrar la
-                        busqueda de autos que se
-                        encuentren en alquiler o en venta.
-                    </p>
-                    <p>Desarrollado con: HTML5 - CSS3 - Bootstrap 5 - Javascript.</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-evenly mt-3">
-
-                <!-- Button Modal Editar Proyecto -->
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarProyecto">
-                    <i class="bi bi-pencil-fill fs-2"></i>
-                </button>
-
-                <!-- Modal de Editar Proyecto -->
-                <div class="modal fade" id="btnEditarProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="editarProyectoLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-white" id="editarProyectoLabel">Editar proyecto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Nro de proyecto a editar</label>
-                                    <input class="form-control" type="number" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Cargar imagen del proyecto</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Titulo del proyecto</label>
-                                    <input class="form-control" type="" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Descripción del proyecto</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Tecnologías del proyecto</label>
-                                    <input class="form-control" type="text" id="formFile">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar proyecto</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button Eliminar Proyecto -->
-                <button type="button" class="btn btn-dark">
-                    <i class="bi bi-x-circle-fill fs-2"></i>
-                </button>
-                
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card">
-                <img src="img/portada-twits.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">Twits</h5>
-                    <p class="card-text">Landing page desarrollada a modo de práctica, donde se puede escribir un
-                        "twit" y se mostrara a un
-                        constado al presionar el boton "agregar".
-                    </p>
-                    <p>Desarrollada con: HTML5 - CSS3 - Bootstrap 5 - Javascript.</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-evenly mt-3">
-
-                <!-- Button Modal Editar Proyecto -->
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#btnEditarProyecto">
-                    <i class="bi bi-pencil-fill fs-2"></i>
-                </button>
-
-                <!-- Modal de Editar Proyecto -->
-                <div class="modal fade" id="btnEditarProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="editarProyectoLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content bg-dark">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-white" id="editarProyectoLabel">Editar proyecto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Nro de proyecto a editar</label>
-                                    <input class="form-control" type="number" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Cargar imagen del proyecto</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Titulo del proyecto</label>
-                                    <input class="form-control" type="" id="formFile">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Descripción del proyecto</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label text-white-50">Tecnologías del proyecto</label>
-                                    <input class="form-control" type="text" id="formFile">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Actualizar proyecto</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button Eliminar Proyecto -->
-                <button type="button" class="btn btn-dark">
-                    <i class="bi bi-x-circle-fill fs-2"></i>
-                </button>
-                
-            </div>
-        </div>
+        </li>
     </div>
 
     <div class="d-flex justify-content-evenly mt-5">
@@ -403,31 +154,102 @@
             aria-labelledby="btnAgregarProyectoLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-dark">
+
                     <div class="modal-header">
                         <h5 class="modal-title text-white" id="AgregarProyectoLabel">Agregar un nuevo proyecto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label text-white-50">Cargar imagen del proyecto</label>
-                            <input class="form-control" type="file" id="formFile">
+
+                    <form [formGroup]="formProyectos">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="link_portada" class="form-label text-white-50">Ingresar link de la portada del proyecto</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="link_portada"
+                                    formControlName="link_portada"
+                                    placeholder="Ingrese un link de su portada."
+                                    [ngClass]="{'is-invalid': LinkPortada?.errors && LinkPortada?.touched, 'is-valid': !LinkPortada?.errors && LinkPortada?.touched}"
+                                    >
+                                    <div *ngIf="LinkPortada?.errors && LinkPortada?.touched">
+                                        <p *ngIf="LinkPortada?.hasError('required')" class="text-danger">
+                                            El link de su portada es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="titulo" class="form-label text-white-50">Titulo del proyecto</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="titulo"
+                                    formControlName="titulo"
+                                    placeholder="Ingrese el titulo del proyecto."
+                                    [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}"
+                                    >
+                                    <div *ngIf="Titulo?.errors && Titulo?.touched">
+                                        <p *ngIf="Titulo?.hasError('required')" class="text-danger">
+                                            El titulo de su proyecto es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label text-white-50">Descripción del proyecto</label>
+                                <textarea 
+                                    class="form-control" 
+                                    id="descripcion"
+                                    rows="3"
+                                    formControlName="descripcion"
+                                    placeholder="Ingrese la descripcion del proyecto."
+                                    [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}"
+                                    >        
+                                </textarea>
+                                <div *ngIf="Descripcion?.errors && Descripcion?.touched">
+                                    <p *ngIf="Descripcion?.hasError('required')" class="text-danger">
+                                        La descripcion de su proyecto es requerido.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tecnologias" class="form-label text-white-50">Tecnologías del proyecto</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="tecnologias"
+                                    formControlName="tecnologias"
+                                    placeholder="Ingrese las tecnologias del proyecto."
+                                    [ngClass]="{'is-invalid': Tecnologias?.errors && Tecnologias?.touched, 'is-valid': !Tecnologias?.errors && Tecnologias?.touched}"
+                                    >
+                                    <div *ngIf="Tecnologias?.errors && Tecnologias?.touched">
+                                        <p *ngIf="Tecnologias?.hasError('required')" class="text-danger">
+                                            La tecnologia de su proyecto es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="link_proyecto" class="form-label text-white-50">Link del proyecto</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="link_proyecto"
+                                    formControlName="link_proyecto"
+                                    placeholder="Ingrese el link de su proyecto."
+                                    [ngClass]="{'is-invalid': LinkProyecto?.errors && LinkProyecto?.touched, 'is-valid': !LinkProyecto?.errors && LinkProyecto?.touched}"
+                                    >
+                                    <div *ngIf="LinkProyecto?.errors && LinkProyecto?.touched">
+                                        <p *ngIf="LinkProyecto?.hasError('required')" class="text-danger">
+                                            El link hacia su proyecto es requerido.
+                                        </p>
+                                    </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label text-white-50">Titulo del proyecto</label>
-                            <input class="form-control" type="" id="formFile">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label text-white-50">Descripción del proyecto</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1"rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label text-white-50">Tecnologías del proyecto</label>
-                            <input class="form-control" type="text" id="formFile">
-                        </div>
-                    </div>
+                    </form>
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Agregar proyecto</button>
+                        <button type="button" class="btn btn-secondary" (click)="agregarProyecto()" data-bs-dismiss="modal">Agregar proyecto</button>
                     </div>
+
                 </div>
             </div>
         </div>

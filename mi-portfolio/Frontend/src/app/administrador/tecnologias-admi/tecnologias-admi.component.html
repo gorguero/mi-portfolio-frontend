@@ -5,28 +5,26 @@
 
     <p class="display-5 pt-3 text-center text-uppercase lh-lg fw-bold">Tecnologías</p>
 
-    <div class="row">
+    <ul style="list-style: none;">
 
-        <article class="col d-flex justify-content-center flex-wrap mt-2">
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
 
-            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-            <img src="img/html5 (1).png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
-
-            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-            <img src="img/css3.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
-
-            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-            <img src="img/bootstrap.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
-
-            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-            <img src="img/javascript.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
-
-            <i class="bi bi-x-circle-fill text-danger fs-2"></i>
-            <img src="img/git.png" class="img-thumbnail mx-3 mt-3 img-fluid" alt="...">
-
-        </article>
-
-    </div>
+            <li *ngFor="let tecnologia of tecnologiaList">
+                <p class="fs-3 text-uppercase ms-4">{{tecnologia.nombre}}</p>
+                <div class="col">
+                    <img [src]="tecnologia.link_logo" class="img-thumbnail mx-3 mt-3 img-fluid">
+                    <!-- Button trigger modal de editar tecnologia-->
+                    <button type="button" class="btn btn-dark" (click)="obtenerId(tecnologia.idTecnologia)" data-bs-toggle="modal" data-bs-target="#btnEditarTecnologia">
+                        <i class="bi bi-pencil-fill fs-2"></i>
+                    </button>
+                    <!-- Button trigger modal de eliminar tecnologia-->
+                    <button type="button" class="btn btn-dark ms-4" (click)="eliminarTecnologia(tecnologia.idTecnologia)">
+                        <i class="bi bi-x-circle-fill text-danger fs-2 float-end"></i> 
+                    </button>
+                </div>
+            </li>
+        </div>
+    </ul>
 
     <div class="d-flex justify-content-center mt-5">
         <!-- Button trigger modal de agregar tecnologia-->
@@ -38,19 +36,109 @@
             aria-labelledby="btnAgregarTecnologiaLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-dark">
+
                     <div class="modal-header">
                         <h5 class="modal-title text-white" id="AgregarTecnologiaLabel">Agregar nueva tecnología</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label text-white-50">Cargar logo de tecnología</label>
-                            <input class="form-control" type="file" id="formFile">
+
+                    <form [formGroup]="formTecnologia">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="link_logo" class="form-label text-white-50">Cargar link del logo de tecnología</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="id_link_logo"
+                                    formControlName="link_logo"
+                                    placeholder="Ingresar link de la imagen"
+                                    [ngClass]="{'is-invalid': LinkLogo?.errors && LinkLogo?.touched, 'is-valid': !LinkLogo?.errors && LinkLogo?.touched}"
+                                    >
+                                    <div *ngIf="LinkLogo?.errors && LinkLogo?.touched">
+                                        <p *ngIf="LinkLogo?.hasError('required')" class="text-danger">
+                                            El link de la tecnologia es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombreTecnologia" class="form-label text-white-50">Nombre de la tecnología</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="IdNombreTecnologia"
+                                    formControlName="nombreTecnologia"
+                                    placeholder="Ingresar el nombre de la tecnologia"
+                                    [ngClass]="{'is-invalid': NombreTecnologia?.errors && NombreTecnologia?.touched, 'is-valid': !NombreTecnologia?.errors && NombreTecnologia?.touched}"
+                                    >
+                                    <div *ngIf="NombreTecnologia?.errors && NombreTecnologia?.touched">
+                                        <p *ngIf="NombreTecnologia?.hasError('required')" class="text-danger">
+                                            El nombre de la tecnologia es requerido.
+                                        </p>
+                                    </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Agregar tecnología</button>
+                        <button type="button" class="btn btn-secondary" (click)="agregarTecnologia()" data-bs-dismiss="modal">Agregar tecnología</button>
                     </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de editar tecnologia -->
+        <div class="modal fade" id="btnEditarTecnologia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="btnEditarTecnologiaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title text-white" id="EditarTecnologiaLabel">Editar nueva tecnología</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form [formGroup]="formTecnologiaEdit">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="link_logo_edit" class="form-label text-white-50">Cargar link del logo de tecnología</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="id_link_logo_edit"
+                                    formControlName="link_logo_edit"
+                                    placeholder="Ingresar link de la imagen"
+                                    [ngClass]="{'is-invalid': LinkLogoEdit?.errors && LinkLogoEdit?.touched, 'is-valid': !LinkLogoEdit?.errors && LinkLogoEdit?.touched}"
+                                    >
+                                    <div *ngIf="LinkLogoEdit?.errors && LinkLogoEdit?.touched">
+                                        <p *ngIf="LinkLogoEdit?.hasError('required')" class="text-danger">
+                                            El link de la tecnologia es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombreTecnologia_edit" class="form-label text-white-50">Nombre de la tecnología</label>
+                                <input 
+                                    class="form-control" 
+                                    type="text" 
+                                    id="IdNombreTecnologia_edit"
+                                    formControlName="nombreTecnologia_edit"
+                                    placeholder="Ingresar el nombre de la tecnologia"
+                                    [ngClass]="{'is-invalid': NombreTecnologiaEdit?.errors && NombreTecnologiaEdit?.touched, 'is-valid': !NombreTecnologiaEdit?.errors && NombreTecnologiaEdit?.touched}"
+                                    >
+                                    <div *ngIf="NombreTecnologiaEdit?.errors && NombreTecnologiaEdit?.touched">
+                                        <p *ngIf="NombreTecnologiaEdit?.hasError('required')" class="text-danger">
+                                            El nombre de la tecnologia es requerido.
+                                        </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="modal-footer">
+                        <button type="button" (click)="editarSoftskill()" class="btn btn-secondary" data-bs-dismiss="modal">Editar tecnología</button>
+                    </div>
+
                 </div>
             </div>
         </div>

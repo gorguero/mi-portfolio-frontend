@@ -21,8 +21,12 @@ export class PersonaService {
     return this.http.get<Persona[]>(`${this.URL}obtener`);
   }
 
-  // public editPersona(idPerson:number, nuevoNombre:string, nuevoApellido:string,):Observable<Persona>{
-  //   return this.http.put<any>(`${this.URL}editar/${idPersona}`);
-  // }
+  public editarSoftskill(id:number, persona:Persona):Observable<any>{
+    return this.http.put<any>(`${this.URL}editar/${id}`, persona);
+  }
+
+  public detail(id:number):Observable<Persona>{
+    return this.http.get<Persona>(`${this.URL}detail/${id}`);
+  }
 
 }

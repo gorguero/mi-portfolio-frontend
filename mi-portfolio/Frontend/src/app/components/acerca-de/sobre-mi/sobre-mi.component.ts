@@ -10,24 +10,22 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 })
 export class SobreMiComponent implements OnInit {
 
-  // sobreMi:any;
-  disponibilidad:any;
-  informacionDeContacto:any;
-  persona:Persona = new Persona(1,"","","","","","","","","");
+  personaList:any;
 
-  constructor(private dataPersona:PersonaService, private datosPortfolio:PorfolioService) { }
+  constructor(private personaService:PersonaService, private datosPortfolio:PorfolioService) { }
 
   ngOnInit(): void {
-    this.dataPersona.findPersona(this.persona.id).subscribe(data => {
-      this.persona = data;
-    })
-    
-    /* Datos reales moqueados en JSON */
-    this.datosPortfolio.obtenerDatos().subscribe(data => {
-      this.disponibilidad = data.disponibilidad;
-      this.informacionDeContacto = data.infoDeContacto;
-    })
-    
+    this.obtenerDatos();
+  }
+
+  public obtenerDatos(){
+
+    this.personaService.getPersona().subscribe(
+      data => {
+        this.personaList = data;
+      }
+    )
+
   }
 
 }
