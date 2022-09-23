@@ -24,7 +24,8 @@
               </a>
             </li>
             <li class="nav-item d-block align-self-center me-5">
-              <a routerLink="/login" class="btn btn-outline-info ms-4 btn-lg w-100" type="button">Log in</a>
+              <a routerLink="/login" class="btn btn-outline-info ms-4 btn-lg w-100" type="button" *ngIf="!isLogged" >Login</a>
+              <button routerLink="/login" class="btn btn-outline-info ms-4 btn-lg w-100" type="button" *ngIf="isLogged" (click)="onLogOut()">Logout</button>
             </li>
           </ul>
 
